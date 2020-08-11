@@ -1,9 +1,20 @@
 import React from 'react';
 
-export const Board = ({status}) => {
+export const Board = ({status, tasks}) => {
     return (
         <div>
-            Board + {status};
+            Board {status};
+            {
+               tasks
+                   .filter(el => el.status === status)
+                   .map( el=>
+                   <div>
+                      <div> {el.title}</div>
+                      <div> prioriry = {el.priority}</div>
+                   </div>
+               )
+            }
+            <hr/>
         </div>
     );
 };

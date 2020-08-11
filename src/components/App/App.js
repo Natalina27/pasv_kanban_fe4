@@ -9,17 +9,17 @@ const initialTasks = [
         id: uuid(),
         title: 'First Task',
         priority: 2,
-        status: 'todo'
+        status: 'Todo'
     },
     {
         id: uuid(),
         title: 'Second Task',
         priority: 3,
-        status: 'review'
+        status: 'Review'
     }
     ];
 
-const statuses = ['todo', 'progress', 'review', 'done'];
+const statuses = ['Todo', 'Progress', 'Review', 'Done'];
 
 function App() {
 
@@ -28,8 +28,14 @@ function App() {
   return (
     <div>
       <FormCreateTask />
+      <hr/>
         {
-            statuses.map(el =>  <Board status={el} key={el}/> )
+            statuses.map(el =>
+                <Board
+                    status={el}
+                    key={el}
+                    tasks={tasks}
+                /> )
         }
     </div>
   );
