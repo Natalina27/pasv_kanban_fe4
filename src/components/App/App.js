@@ -18,12 +18,19 @@ const initialTasks = [
         status: 'review'
     }
     ];
+
+const statuses = ['todo', 'progress', 'review', 'done'];
+
 function App() {
+
     const [tasks, setTasks] = useState(initialTasks);
+
   return (
     <div>
       <FormCreateTask />
-      <Board />
+        {
+            statuses.map(el =>  <Board status={el} key={el}/> )
+        }
     </div>
   );
 }
