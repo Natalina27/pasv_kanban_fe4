@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.module.css';
-import {FormCreateTask} from "../FormCreateTask";
-import {Board} from "../Board";
-import {v4 as uuid} from 'uuid';
+import { FormCreateTask } from "../FormCreateTask";
+import { Board } from "../Board";
+import { v4 as uuid } from 'uuid';
+import { Container } from "reactstrap";
 
 const initialTasks = [
     {
@@ -17,7 +18,7 @@ const initialTasks = [
         priority: 3,
         status: 'Review'
     }
-    ];
+];
 
 const statuses = ['Todo', 'Progress', 'Review', 'Done'];
 
@@ -25,20 +26,22 @@ function App() {
 
     const [tasks, setTasks] = useState(initialTasks);
 
-  return (
-    <div>
-      <FormCreateTask />
-      <hr/>
-        {
-            statuses.map(el =>
-                <Board
-                    status={el}
-                    key={el}
-                    tasks={tasks}
-                /> )
-        }
-    </div>
-  );
+    return (
+        <div>
+            <Container>
+                <FormCreateTask/>
+                <hr/>
+                {
+                    statuses.map(el =>
+                        <Board
+                            status={el}
+                            key={el}
+                            tasks={tasks}
+                        />)
+                }
+            </Container>
+        </div>
+    );
 }
 
 export default App;
