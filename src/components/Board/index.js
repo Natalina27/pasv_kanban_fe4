@@ -6,11 +6,17 @@ import  { Col, Card, CardBody } from 'reactstrap';
 import s from './styles.module.css';
 
 
-export const Board = ({status, tasks}) => {
+export const Board = ({status, tasks, changeTaskStatus}) => {
     tasks = get([], 'tasks', tasks);
+    console.log('tasks', tasks);
+
     const tasksJSX = tasks
         .filter(el => el.status === status)
-        .map(el => <Task key={el.id} task={el}/>);
+        .map(el => <Task
+            key={el.id}
+            task={el}
+            changeTaskStatus={changeTaskStatus}
+        />);
     return (
         <div className={s.boards}>
             <Col className={s.col}>
