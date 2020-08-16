@@ -3,3 +3,7 @@
     flex-direction: row;
     justify-content: space-around;
 }
+.task{
+    display: flex;
+    flex-direction: column;
+}

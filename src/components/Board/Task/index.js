@@ -3,25 +3,36 @@ import {Button, Card, CardBody, Alert} from 'reactstrap';
 
 import s from './styles.module.css';
 
-export const Task = ({task, changeTaskStatus}) => {
+export const Task = ({task, changeTaskPosition}) => {
 
     const alertColor = ['primary', 'success', 'warning', 'danger'];
+
     return (
         <Card>
-            <CardBody>
-                <Alert color={alertColor[task.priority]}>
+            <CardBody className={s.buttons}>
+                <Alert color={alertColor[task.priority]} className={s.task}>
                 {task.title}{task.priority}
-                    <Button size='sm'>↑</Button>
-                    <Button size='sm'>↓</Button>
+                <div className={s.buttons}>
+                    {task.priority !== 3 &&
+                        <Button size='sm' onClick={()=>changeTaskPosition(task.id, 'up')}>
+                        ↑
+                        </Button>
+                    }
+                    { task.priority !== 0 &&
+                        <Button size='sm' onClick={()=>changeTaskPosition(task.id, 'down')}>
+                        ↓
+                    </Button>
+                        }
+                </div>
                 </Alert>
             </CardBody>
             <CardBody className={s.buttons}>
                 { task.status !== 'Todo' &&
-                <Button onClick={()=> changeTaskStatus(task.id, 'left')}>
+                <Button onClick={()=> changeTaskPosition(task.id, 'left')}>
                     ←
                 </Button>}
                 { task.status !== 'Done' &&
-                <Button onClick={()=> changeTaskStatus(task.id, 'right')}>
+                <Button onClick={()=> changeTaskPosition(task.id, 'right')}>
                     →
                 </Button>}
             </CardBody>

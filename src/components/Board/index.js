@@ -6,7 +6,7 @@ import  { Col, Card, CardBody } from 'reactstrap';
 import s from './styles.module.css';
 
 
-export const Board = ({status, tasks, changeTaskStatus}) => {
+export const Board = ({status, tasks, changeTaskPosition}) => {
     tasks = get([], 'tasks', tasks);
     console.log('tasks', tasks);
 
@@ -15,7 +15,7 @@ export const Board = ({status, tasks, changeTaskStatus}) => {
         .map(el => <Task
             key={el.id}
             task={el}
-            changeTaskStatus={changeTaskStatus}
+            changeTaskPosition={changeTaskPosition}
         />);
     return (
         <div className={s.boards}>

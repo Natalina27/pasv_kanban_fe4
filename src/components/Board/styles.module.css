@@ -1,5 +1,5 @@
 .cardBody{
-    height: 400px;
+    min-height: 400px;
     width: 250px;
     border: gainsboro 1px solid;
 }

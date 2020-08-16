@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './App.module.css';
-import { FormCreateTask } from "../FormCreateTask";
-import { Board } from "../Board";
-import { v4 as uuid } from 'uuid';
-import { Container, Row } from "reactstrap";
+import {FormCreateTask} from "../FormCreateTask";
+import {Board} from "../Board";
+import {v4 as uuid} from 'uuid';
+import {Container, Row} from "reactstrap";
 
 const initialTasks = [
     {
@@ -33,18 +33,23 @@ const initialTasks = [
 ];
 
 const statuses = ['Todo', 'Progress', 'Review', 'Done'];
+const taskPriority = [0, 1, 2, 3];
 
-function App() {
+export function App() {
 
     const [tasks, setTasks] = useState(initialTasks);
 
-    const changeTaskStatus = (taskId, direction) => {
-        const newTask = tasks.map( el => {
-            if (el.id === taskId){
-                if (direction === 'right'){
+    const changeTaskPosition = (taskId, direction) => {
+        const newTask = tasks.map(el => {
+            if (el.id === taskId) {
+                if (direction === 'right') {
                     el.status = statuses[statuses.indexOf(el.status) + 1]
-                }else if (direction === 'left'){
+                } else if (direction === 'left') {
                     el.status = statuses[statuses.indexOf(el.status) - 1]
+                } else if (direction === 'up') {
+                    el.priority = taskPriority[taskPriority.indexOf(el.priority) + 1]
+                } else if (direction === 'down') {
+                    el.priority = taskPriority[taskPriority.indexOf(el.priority) - 1]
                 }
             }
             return el;
@@ -57,7 +62,7 @@ function App() {
             status={el}
             key={el}
             tasks={tasks}
-            changeTaskStatus={changeTaskStatus}
+            changeTaskPosition={changeTaskPosition}
         />);
 
     return (
@@ -71,5 +76,3 @@ function App() {
         </div>
     );
 }
-
-export default App;
