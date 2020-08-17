@@ -32,7 +32,7 @@ const initialTasks = [
     },
 ];
 
-const statuses = ['Todo', 'Progress', 'Review', 'Done'];
+const statuses = ['Todo', 'In Progress', 'Review', 'Done'];
 const taskPriority = [0, 1, 2, 3];
 
 export function App() {

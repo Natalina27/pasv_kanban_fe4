@@ -12,6 +12,7 @@ export const Board = ({status, tasks, changeTaskPosition}) => {
 
     const tasksJSX = tasks
         .filter(el => el.status === status)
+        .sort((a,b) => b.priority - a.priority)
         .map(el => <Task
             key={el.id}
             task={el}
