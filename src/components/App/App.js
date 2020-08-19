@@ -38,6 +38,25 @@ const taskPriority = [0, 1, 2, 3];
 export function App() {
 
     const [tasks, setTasks] = useState(initialTasks);
+    const [isModalOpen, setModelOpen] = useState(false);
+    const [newTitle, setNewTitle] = useState('');
+
+    const addNewTask = (newTitle) => {
+        const newTask = {
+            id: uuid(),
+            title: newTitle,
+            priority: 0,
+            status: 'Todo'
+        }
+        const newList = [...tasks, newTask];
+        setTasks(newList);
+        setModelOpen(false);
+        setNewTitle('');
+    }
+
+    const openModal = ()=>setModelOpen(true);
+
+    const changeTitle= (e)=>setNewTitle(e.target.value);
 
     const changeTaskPosition = (taskId, direction) => {
         const newTask = tasks.map(el => {
@@ -57,6 +76,7 @@ export function App() {
         setTasks(newTask);
     }
 
+
     const BoardJSX = statuses.map(el =>
         <Board
             status={el}
@@ -68,7 +88,13 @@ export function App() {
     return (
         <div>
             <Container>
-                <FormCreateTask/>
+                <FormCreateTask
+                    addNewTask={addNewTask}
+                    newTitle={newTitle}
+                    openModal={openModal}
+                    isModalOpen={isModalOpen}
+                    changeTitle={changeTitle}
+                    />
                 <Row>
                     {BoardJSX}
                 </Row>

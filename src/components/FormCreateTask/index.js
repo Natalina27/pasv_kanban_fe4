@@ -1,22 +1,37 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Input, ModalFooter, Button, ModalBody, Modal, ModalHeader, Label} from 'reactstrap';
 
-export const FormCreateTask = () => {
-    const [isModalOpen, setModelOpen] = useState(false);
+
+
+export const FormCreateTask = (
+    {openModal,isModalOpen, newTitle, addNewTask, changeTitle }
+    ) => {
+
     return (
         <>
-            <Button onClick={()=>setModelOpen(true)}>Add new task</Button>
+            <Button onClick={() => openModal()}>Add new task</Button>
             <Modal isOpen={isModalOpen}>
                 <ModalHeader> Add new task </ModalHeader>
                 <ModalBody>
                     <Label>New Title</Label>
-                    <Input/>
+                    <Input
+                        type='text'
+                        value={newTitle}
+                        onChange={changeTitle}
+                    />
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary">Add</Button>{' '}
+                    <Button
+                        color="primary"
+                        onClick={()=>addNewTask(newTitle)}
+                    >
+                        Add
+                    </Button>
+                    {' '}
                     <Button
                         color="secondary"
-                        onClick={()=>setModelOpen(false)}>
+                        onClick={openModal}
+                    >
                         Cancel
                     </Button>
                 </ModalFooter>
